@@ -1,3 +1,4 @@
+import pytest
 import unittest
 from Maximum_Number_of_Balloons import maximumBalloonNumber
 
@@ -9,18 +10,15 @@ class TestBallon(unittest.TestCase):
         with self.assertRaises(TypeError):
             maximumBalloonNumber(232)
 
-    def test_how_many_ballons(self):
-        result = maximumBalloonNumber("balloonballoonballoon")
-        self.assertEqual(result, 3)
 
-    def test_how_many_ballons2(self):
-        result = maximumBalloonNumber("loollb")
-        self.assertEqual(result, 0)
+test_data = [
+    ("balloonballoonballoon", 3),
+    ("loollb", 0),
+    ("loollbxxabooolaaannloo", 2),
+    ("", 0)
+]
 
-    def test_how_many_ballons3(self):
-        result = maximumBalloonNumber("loollbxxabooolaaannloo")
-        self.assertEqual(result, 2)
 
-    def test_how_many_ballons4(self):
-        result = maximumBalloonNumber("")
-        self.assertEqual(result, 0)
+@pytest.mark.parametrize("test_input, expected_result", test_data)
+def testBalloons(test_input, expected_result):
+    assert maximumBalloonNumber(test_input) == expected_result
