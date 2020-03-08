@@ -1,26 +1,25 @@
 import unittest
-import Maximum-69-Number
+import pytest
+from Maximum_69_Number import maximum69Number
 
 # python -m unittest test_Maximum_69_Number.py
+# pytest -v test_Maximum_69_Number.py
 
 
-class TestMax_69_Num(unittest.TestCase):
-    def test_ot_will_reject_input_if_not_integer(self):
+class TestMax69Num(unittest.TestCase):
+    def should(self):
         with self.assertRaises(TypeError):
             maximum69Number('res')
 
-    def test_max(self):
-        result = maximum69Number(6996)
-        self.assertEqual(result, 9996)
 
-    def test_max2(self):
-        result = maximum69Number(9996)
-        self.assertEqual(result, 9999)
+test_data = [
+    (6996, 9996),
+    (9996, 9999),
+    (9999, 9999),
+    (9669, 9969)
+]
 
-    def test_max3(self):
-        result = maximum69Number(9669)
-        self.assertEqual(result, 9969)
 
-    def test_max4(self):
-        result = maximum69Number(9999)
-        self.assertEqual(result, 9999)
+@pytest.mark.parametrize("test_input, expected_result", test_data)
+def testMax(test_input, expected_result):
+    assert maximum69Number(test_input) == expected_result
