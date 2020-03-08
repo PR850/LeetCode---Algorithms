@@ -5,8 +5,12 @@ def maximum69Number(num):
         return num
 
     digits = list(str(num))
-    i = 0
 
+    return changeOneSixToNine(digits)
+
+
+def changeOneSixToNine(digits):
+    i = 0
     for digit in digits:
         if digit == '6':
             digits[i] = '9'
